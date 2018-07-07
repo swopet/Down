@@ -32,6 +32,8 @@
         <Library Value="sfml-audio"/>
         <Library Value="sfml-network"/>
         <Library Value="sfml-system"/>
+        <Library Value="opengl32"/>
+        <Library Value="glu32"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>

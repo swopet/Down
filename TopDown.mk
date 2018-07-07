@@ -41,8 +41,8 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)C:\Users\Trevor\Stuff\SFML-2.5.0-windows-gcc-7.3.0-mingw-32-bit\SFML-2.5.0\include 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-audio $(LibrarySwitch)sfml-network $(LibrarySwitch)sfml-system 
-ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-audio" "sfml-network" "sfml-system" 
+Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-audio $(LibrarySwitch)sfml-network $(LibrarySwitch)sfml-system $(LibrarySwitch)opengl32 $(LibrarySwitch)glu32 
+ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-audio" "sfml-network" "sfml-system" "opengl32" "glu32" 
 LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Users\Trevor\Stuff\SFML-2.5.0-windows-gcc-7.3.0-mingw-32-bit\SFML-2.5.0\lib 
 
 ##
