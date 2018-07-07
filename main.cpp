@@ -147,7 +147,7 @@ void draw_scene(){
 void init(){
     srand(time(NULL));
     aspect = (double)window->getSize().x/(double)window->getSize().y;
-    demo_scene = new Scene();
+    demo_scene = new Scene(20,20);
     glClearColor(0.0,0.0,0.0,1.0);
     glEnable(GL_NORMALIZE);
     glEnable(GL_DEPTH_TEST);
