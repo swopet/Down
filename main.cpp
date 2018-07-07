@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
+#include <math.h>
 
 sf::RenderWindow * window;
 double aspect;
@@ -9,10 +10,11 @@ int frame = 0;
 class Tile {
 private:
     GLfloat color[3];
+    GLfloat base_height;
     GLfloat height;
 public:
     Tile (){
-        height = 5;
+        base_height = 5;
         color[0] = 1.0;
         color[1] = 1.0;
         color[2] = 1.0;
@@ -23,7 +25,7 @@ public:
         color[2] = new_color[2];
     }
     void set_height(GLfloat new_height){
-        height = new_height;
+        base_height = new_height;
     }
     void draw(){
         glEnable(GL_COLOR_MATERIAL);
@@ -57,6 +59,9 @@ public:
         glVertex3f(0.5,height,0.5);
         glVertex3f(0.5,height,-0.5);
         glEnd();
+    }
+    void update(int t){
+        height = base_height + 1.0 + 0.5*sin((double)t*M_PI/360.0);
     }
 };
 
@@ -118,13 +123,22 @@ public:
             }
         }
     }
+    void update(){
+        for (int x = 0; x < width; x++){
+            for (int z = 0; z < length; z++){
+                tiles[x*length+z].update(frame+(x+z)*30);
+            }
+        }
+    }
 };
+
+Scene * demo_scene;
 
 void update(){
     frame++;
+    demo_scene->update();
 }
 
-Scene * demo_scene;
 
 void draw_scene(){
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
