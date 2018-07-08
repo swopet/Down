@@ -41,6 +41,7 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)C:\SFML-2.5.0\include 
 IncludePCH             := 
 RcIncludePath          := 
+<<<<<<< HEAD
 Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-audio $(LibrarySwitch)sfml-network $(LibrarySwitch)sfml-system 
 ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-audio" "sfml-network" "sfml-system" 
 LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\SFML-2.5.0\lib 
@@ -52,7 +53,7 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\SFML-2.5.
 AR       := C:/mingw32/bin/ar.exe rcu
 CXX      := C:/mingw32/bin/g++.exe
 CC       := C:/mingw32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -Wall -Wnarrowing $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/mingw32/bin/as.exe
