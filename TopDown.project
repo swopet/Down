@@ -20,13 +20,13 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="MinGW ( MinGW )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Debug" CompilerType="" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="C:\Users\Trevor\Stuff\SFML-2.5.0-windows-gcc-7.3.0-mingw-32-bit\SFML-2.5.0\include"/>
+        <IncludePath Value="C:\SFML-2.5.0\include"/>
         <Preprocessor Value="SFML_STATIC"/>
       </Compiler>
       <Linker Options="" Required="yes">
-        <LibraryPath Value="C:\Users\Trevor\Stuff\SFML-2.5.0-windows-gcc-7.3.0-mingw-32-bit\SFML-2.5.0\lib"/>
+        <LibraryPath Value="C:\SFML-2.5.0\lib"/>
         <Library Value="sfml-graphics"/>
         <Library Value="sfml-window"/>
         <Library Value="sfml-audio"/>
