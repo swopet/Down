@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=TopDown
 ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/Trevor/Stuff/TopDown
-ProjectPath            :=C:/Users/Trevor/Stuff/TopDown/TopDown
+WorkspacePath          :=C:/Users/William/Desktop/Stuff/Games
+ProjectPath            :=C:/Users/William/Desktop/Stuff/Games/Down
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Trevor
+User                   :=William
 Date                   :=07/07/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
-LinkerName             :=C:/MinGW/bin/g++.exe
-SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
+LinkerName             :=C:/mingw32/bin/g++.exe
+SharedObjectLinkerName :=C:/mingw32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,26 +36,27 @@ ObjectsFileList        :="TopDown.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=C:/MinGW/bin/windres.exe
+RcCompilerName         :=C:/mingw32/bin/windres.exe
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)C:\Users\Trevor\Stuff\SFML-2.5.0-windows-gcc-7.3.0-mingw-32-bit\SFML-2.5.0\include 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)C:\SFML-2.5.0\include 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-audio $(LibrarySwitch)sfml-network $(LibrarySwitch)sfml-system $(LibrarySwitch)opengl32 $(LibrarySwitch)glu32 
-ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-audio" "sfml-network" "sfml-system" "opengl32" "glu32" 
-LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\Users\Trevor\Stuff\SFML-2.5.0-windows-gcc-7.3.0-mingw-32-bit\SFML-2.5.0\lib 
+<<<<<<< HEAD
+Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-audio $(LibrarySwitch)sfml-network $(LibrarySwitch)sfml-system 
+ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-audio" "sfml-network" "sfml-system" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\SFML-2.5.0\lib 
 
 ##
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := C:/MinGW/bin/ar.exe rcu
-CXX      := C:/MinGW/bin/g++.exe
-CC       := C:/MinGW/bin/gcc.exe
+AR       := C:/mingw32/bin/ar.exe rcu
+CXX      := C:/mingw32/bin/g++.exe
+CC       := C:/mingw32/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall -Wnarrowing $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := C:/MinGW/bin/as.exe
+AS       := C:/mingw32/bin/as.exe
 
 
 ##
@@ -94,7 +95,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Trevor/Stuff/TopDown/TopDown/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/William/Desktop/Stuff/Games/Down/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
