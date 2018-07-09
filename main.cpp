@@ -1,11 +1,66 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <math.h>
+#define SQRT_3 1.73205080757
+#define SQRT_2 1.41421356237
 
 sf::RenderWindow * window;
 double aspect;
 int frame = 0;
 
+class Player {
+private:
+	double angle;
+	float speed = 0.15;
+public:
+	sf::Vector3f pos;
+	Player(){
+		pos = sf::Vector3f(10.0,5.0,10.0);
+		angle = 45.0;
+	}
+	void transform(){
+		glRotatef(-angle,0.0,1.0,0.0);
+		glTranslatef(-pos.x,-pos.y,-pos.z);
+	}
+	void move(sf::Vector2f dir){
+		double move_angle = atan2(dir.y,dir.x);
+		double angle_radians = angle * M_PI/180.0;
+		pos += speed*sf::Vector3f(cos(move_angle+angle_radians),0.0,-sin(move_angle+angle_radians));
+	}
+	void rotate(double degrees){
+		angle += degrees;
+		if (angle < 0.0) angle = angle + 360.0;
+		if (angle > 360.0) angle = angle - 360.0;
+	}
+	void draw(){
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+		glPushMatrix();
+		glTranslatef(pos.x,pos.y,pos.z);
+		glTranslatef(0.0,0.5,0.0);
+		glColor3f(0.0,1.0,0.8);
+		glBegin(GL_TRIANGLES);
+		glNormal3f(0.0,-1.0,0.0);
+		glVertex3f(-0.5,0.0,0.5/SQRT_3);
+		glVertex3f(0.0,0.0,0.5/SQRT_3-SQRT_3/2.0);
+		glVertex3f(0.5,0.0,0.5/SQRT_3);
+		glNormal3f(SQRT_3/2.0,0.5,0.0);
+		glVertex3f(0.5,0.0,0.5/SQRT_3);
+		glVertex3f(0.0,SQRT_3,0.0);
+		glVertex3f(-0.5,0.0,0.5/SQRT_3);
+		glNormal3f(-SQRT_3*SQRT_2/4.0,0.5,-SQRT_3*SQRT_2/4.0);
+		glVertex3f(-0.5,0.0,0.5/SQRT_3);
+		glVertex3f(0.0,SQRT_3,0.0);
+		glVertex3f(0.0,0.0,0.5/SQRT_3-SQRT_3/2.0);
+		glNormal3f(SQRT_3*SQRT_2/4.0,0.5,-SQRT_3*SQRT_2/4.0);
+		glVertex3f(0.0,0.0,0.5/SQRT_3-SQRT_3/2.0);
+		glVertex3f(0.0,SQRT_3,0.0);
+		glVertex3f(0.5,0.0,0.5/SQRT_3);
+		glEnd();
+		glPopMatrix();
+	}
+};
+
+Player * player;
 
 class Tile {
 private:
@@ -27,41 +82,61 @@ public:
     void set_height(GLfloat new_height){
         base_height = new_height;
     }
-    void draw(){
-        glEnable(GL_COLOR_MATERIAL);
-        glColor3fv(color);
-        glBegin(GL_QUADS);
-        //bottom
-        glNormal3f(0.0,-1.0,0.0);
-        glVertex3f(-0.5,0.0,-0.5);
-        glVertex3f(-0.5,0.0,0.5);
-        glVertex3f(0.5,0.0,0.5);
-        glVertex3f(0.5,0.0,-0.5);
-        glEnd();
-        //sides
-        for (int i = 0; i < 4; i++){
-            glPushMatrix();
-            glNormal3f(-1.0,0.0,0.0);
-            glRotatef(90*i,0.0,1.0,0.0);
-            glBegin(GL_QUADS);
-            glVertex3f(-0.5,0.0,-0.5);
-            glVertex3f(-0.5,height,-0.5);
-            glVertex3f(-0.5,height,0.5);
-            glVertex3f(-0.5,0.0,0.5);
-            glEnd();
-            glPopMatrix();
-        }
-        //top
-        glNormal3f(0.0,1.0,0.0);
-        glBegin(GL_QUADS);
-        glVertex3f(-0.5,height,-0.5);
-        glVertex3f(-0.5,height,0.5);
-        glVertex3f(0.5,height,0.5);
-        glVertex3f(0.5,height,-0.5);
-        glEnd();
+    void draw(bool highlight = false){
+		for (int i = 0; i < 2; i++){
+			glLineWidth(2.0);
+			glEnable(GL_COLOR_MATERIAL);
+			glPushMatrix();
+			if (i == 0){
+				glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+				glLineWidth(2.0);
+				glColor3f(0.0,0.0,0.0);
+				glScalef(1.001,1.001,1.001);
+			}
+			else {
+				glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+				if (highlight){
+					glColor3f(1.0,1.0,1.0);
+				}
+				else{
+					glColor3fv(color);
+				}
+			}
+			
+			glBegin(GL_QUADS);
+			//bottom
+			glNormal3f(0.0,-1.0,0.0);
+			glVertex3f(-0.5,0.0,-0.5);
+			glVertex3f(-0.5,0.0,0.5);
+			glVertex3f(0.5,0.0,0.5);
+			glVertex3f(0.5,0.0,-0.5);
+			glEnd();
+			//sides
+			for (int i = 0; i < 4; i++){
+				glPushMatrix();
+				glNormal3f(-1.0,0.0,0.0);
+				glRotatef(90*i,0.0,1.0,0.0);
+				glBegin(GL_QUADS);
+				glVertex3f(-0.5,0.0,-0.5);
+				glVertex3f(-0.5,height,-0.5);
+				glVertex3f(-0.5,height,0.5);
+				glVertex3f(-0.5,0.0,0.5);
+				glEnd();
+				glPopMatrix();
+			}
+			//top
+			glNormal3f(0.0,1.0,0.0);
+			glBegin(GL_QUADS);
+			glVertex3f(-0.5,height,-0.5);
+			glVertex3f(-0.5,height,0.5);
+			glVertex3f(0.5,height,0.5);
+			glVertex3f(0.5,height,-0.5);
+			glEnd();
+			glPopMatrix();
+		}
     }
     void update(int t){
-        height = base_height + 1.0 + 0.5*sin((double)t*M_PI/360.0);
+        height = base_height;// + 1.0 + 0.5*sin((double)t*M_PI/360.0);
     }
 };
 
@@ -79,7 +154,7 @@ public:
         GLfloat new_height;
         for (int x = 0; x < width; x++){
             for (int z = 0; z < length; z++){
-                new_height = 0 + rand()%11;
+                new_height = 5.0;
                 
                 heights[x*length+z] = new_height;
                 
@@ -117,8 +192,8 @@ public:
         for (int x = 0; x < width; x++){
             for (int z = 0; z < length; z++){
                 glPushMatrix();
-                glTranslatef(-width/2+x,0.0,-length/2+z);
-                tiles[x*length+z].draw();
+                glTranslatef(x,0.0,z);
+                tiles[x*length+z].draw(((int)player->pos.x ==x && (int)player->pos.z==z));
                 glPopMatrix();
             }
         }
@@ -126,7 +201,7 @@ public:
     void update(){
         for (int x = 0; x < width; x++){
             for (int z = 0; z < length; z++){
-                tiles[x*length+z].update(frame+(x+z)*30);
+                tiles[x*length+z].update(frame);
             }
         }
     }
@@ -154,7 +229,9 @@ void draw_scene(){
     glEnable(GL_LIGHTING);
     glScalef(0.1,0.1,0.1);
     glRotatef(30.0,1.0,0.0,0.0);
-    glRotatef(45.0,0.0,1.0,0.0);
+    player->transform();
+	
+	player->draw();
     demo_scene->draw();
 }
 
@@ -162,6 +239,7 @@ void init(){
     srand(time(NULL));
     aspect = (double)window->getSize().x/(double)window->getSize().y;
     demo_scene = new Scene(20,20);
+	player = new Player();
     glClearColor(0.0,0.0,0.0,1.0);
     glEnable(GL_NORMALIZE);
     glEnable(GL_DEPTH_TEST);
@@ -181,7 +259,8 @@ int main()
     while (window->isOpen())
     {
         sf::Event event;
-        
+        bool moved = false;
+		sf::Vector2f move_dir(0.0,0.0);
         while (window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -189,6 +268,23 @@ int main()
                 window->close();
             }
         }
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+			move_dir += sf::Vector2f(0.0,1.0);
+			moved = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+			move_dir += sf::Vector2f(0.0,-1.0);
+			moved = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+			player->rotate(-0.5);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+			player->rotate(0.5);
+		}
+		if (moved){
+			player->move(move_dir);
+		}
         update();
         draw_scene();
         window->display();
