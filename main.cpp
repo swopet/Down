@@ -1,31 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <math.h>
+#include "Game.hpp"
 #define SQRT_3 1.73205080757
 #define SQRT_2 1.41421356237
 
 sf::RenderWindow * window;
+Game * game;
 double aspect;
-
-void update(){
-}
-
-
-void draw_scene(){
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    glViewport(0,0,window->getSize().x,window->getSize().y);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1.0,1.0,-aspect,aspect,-100.0,100.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHTING);
-    glScalef(0.1,0.1,0.1);
-    glRotatef(30.0,1.0,0.0,0.0);
-}
 
 void init(){
     srand(time(NULL));
@@ -34,6 +16,7 @@ void init(){
     glEnable(GL_NORMALIZE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+	game = new Game();
 }
 
 int main()
@@ -56,8 +39,8 @@ int main()
                 window->close();
             }
         }
-        update();
-        draw_scene();
+        game->update();
+        game->draw_scene();
         window->display();
     }
 }
