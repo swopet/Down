@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <math.h>
-#include "Scene.cpp"
+#include "Scene.hpp"
 #define SQRT_3 1.73205080757
 #define SQRT_2 1.41421356237
 
