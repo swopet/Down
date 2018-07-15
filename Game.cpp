@@ -28,7 +28,7 @@ void Game::draw_scene(){
     
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHTING);
-    glScalef(0.1,0.1,0.1);
+    glScalef(0.2,0.2,0.2);
     glRotatef(30.0,1.0,0.0,0.0);
 	glRotatef(45.0,0.0,1.0,0.0);
 	GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
