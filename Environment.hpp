@@ -1,11 +1,11 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-class Scene
+class Environment
 {
 public:
-	Scene();
-	~Scene();
+	Environment();
+	~Environment();
 
 };
 
