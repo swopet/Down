@@ -11,7 +11,7 @@ double aspect;
 
 void init(){
     srand(time(NULL));
-    aspect = (double)window->getSize().x/(double)window->getSize().y;
+    aspect = (double)window->getSize().y/(double)window->getSize().x;
     glClearColor(0.0,0.0,0.0,1.0);
     glEnable(GL_NORMALIZE);
     glEnable(GL_DEPTH_TEST);
@@ -38,6 +38,10 @@ int main()
             {
                 window->close();
             }
+			if (event.type == sf::Event::Resized)
+			{
+				aspect = (double)window->getSize().y/(double)window->getSize().x;
+			}
         }
         game->update();
         game->draw_scene();

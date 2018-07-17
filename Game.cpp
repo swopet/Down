@@ -22,16 +22,16 @@ void Game::draw_scene(){
     glViewport(0,0,window->getSize().x,window->getSize().y);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-1.0,1.0,-aspect,aspect,-100.0,100.0);
+    glOrtho(-1.0,1.0,-aspect,aspect,-1000.0,1000.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHTING);
-    glScalef(0.2,0.2,0.2);
-    glRotatef(30.0,1.0,0.0,0.0);
+    glScalef(0.1,0.1,0.1);
+    glRotatef(28.0,1.0,0.0,0.0);
 	glRotatef(45.0,0.0,1.0,0.0);
-	GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
+	GLfloat light_position[] = {1.0, 0.5, 1.0, 0.0};
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	player->draw();
 	player->transform();
