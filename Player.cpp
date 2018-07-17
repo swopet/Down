@@ -32,7 +32,8 @@ void Player::move(sf::Vector2i direction){
 
 void Player::update(){
 	if (!moved){
-		double intx, inty;
+		//OPTION 1: CLOSEST CENTER
+		/*double intx, inty;
 		sf::Vector2f decimals(modf(pos.x,&intx),modf(pos.y,&inty));
 		if (decimals.x >= 0.5) intx = intx + 1.0;
 		else if (decimals.x <= -0.5) intx = intx - 1.0;
@@ -42,6 +43,22 @@ void Player::update(){
 		float diff_length = sqrt(diff.x*diff.x+diff.y*diff.y);
 		if (diff_length < speed){
 			pos = sf::Vector2f(intx,inty);
+		}
+		else {
+			pos += diff * speed / diff_length;
+		}*/
+		//OPTION 2: CLOSEST CENTER OR CORNER
+		double intx, inty;
+		
+		sf::Vector2f decimals(modf(pos.x*2.0f,&intx),modf(pos.y*2.0f,&inty));
+		if (decimals.x >= 0.5) intx = intx + 1.0;
+		else if (decimals.x <= -0.5) intx = intx - 1.0;
+		if (decimals.y >= 0.5) inty = inty + 1.0;
+		else if (decimals.y <= -0.5) inty = inty - 1.0;
+		sf::Vector2f diff = sf::Vector2f(intx,inty)/2.0f-pos;
+		float diff_length = sqrt(diff.x*diff.x+diff.y*diff.y);
+		if (diff_length < speed){
+			pos = sf::Vector2f(intx/2.0f,inty/2.0f);
 		}
 		else {
 			pos += diff * speed / diff_length;
