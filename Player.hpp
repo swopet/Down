@@ -8,6 +8,8 @@
 class Player
 {
 private:
+	int animation_frames;
+	int animation_frame;
 	float speed;
 	bool moved;
 	sf::Texture texture;

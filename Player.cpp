@@ -3,6 +3,8 @@
 
 Player::Player()
 {
+	animation_frames = 4.0;
+	animation_frame = 0;
 	speed = 0.08f;
 	moved = false;
 	pos = sf::Vector2f(10.0,10.0);
@@ -59,10 +61,16 @@ void Player::update(){
 		float diff_length = sqrt(diff.x*diff.x+diff.y*diff.y);
 		if (diff_length < speed){
 			pos = sf::Vector2f(intx/2.0f,inty/2.0f);
+			moved = false;
 		}
 		else {
 			pos += diff * speed / diff_length;
+			moved = true;
 		}
+	}
+	if (moved || animation_frame % animation_frames != 0){
+		animation_frame += 1;
+		animation_frame = animation_frame % animation_frames;
 	}
 }
 
@@ -77,15 +85,16 @@ void Player::draw(sf::RenderWindow * curr_window){
 	glDisable(GL_LIGHTING);
 	//draw the texture
 	sf::Vector2f tex_size = sf::Vector2f(texture.getSize())*2.0f/768.0f;
+	tex_size = sf::Vector2f(tex_size.x/(double)animation_frames,tex_size.y);
 	glTranslatef(-tex_size.x/2.0,-24.0/768.0,0.0); //center is center of bottom tile
 	glBegin(GL_QUADS);
-	glTexCoord2f(0.0,1.0);
+	glTexCoord2f(0.0+(double)animation_frame/(double)animation_frames,1.0);
 	glVertex2f(0.0,0.0);
-	glTexCoord2f(0.0,0.0);
+	glTexCoord2f(0.0+(double)animation_frame/(double)animation_frames,0.0);
 	glVertex2f(0.0,tex_size.y);
-	glTexCoord2f(1.0,0.0);
+	glTexCoord2f((double)(animation_frame+1.0)/(double)animation_frames,0.0);
 	glVertex2f(tex_size.x,tex_size.y);
-	glTexCoord2f(1.0,1.0);
+	glTexCoord2f((double)(animation_frame+1.0)/(double)animation_frames,1.0);
 	glVertex2f(tex_size.x,0.0);
 	glEnd();
 	glDisable(GL_BLEND);
