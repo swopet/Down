@@ -3,7 +3,7 @@
 
 Player::Player()
 {
-	speed = 0.005f;
+	speed = 0.08f;
 	moved = false;
 	pos = sf::Vector2f(10.0,10.0);
 	height = 0.5;
