@@ -2,6 +2,8 @@
 #define GAME_HPP
 #include "Environment.hpp"
 #include "Player.hpp"
+#define SQRT_3 1.73205080757
+#define SQRT_2 1.41421356237
 class Game
 {
 private:
