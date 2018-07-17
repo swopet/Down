@@ -13,8 +13,25 @@ Game::~Game()
 {
 }
 
+void Game::process_input(){
+	sf::Vector2i player_movement(0,0);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+		player_movement += sf::Vector2i(-1,0);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+		player_movement += sf::Vector2i(1,0);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+		player_movement += sf::Vector2i(0,1);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+		player_movement += sf::Vector2i(0,-1);
+	}
+	player->move(player_movement);
+}
+
 void Game::update(){
-	
+	player->update();
 }
 
 void Game::draw_scene(){
@@ -34,8 +51,10 @@ void Game::draw_scene(){
 	glRotatef(45.0,0.0,1.0,0.0);
 	GLfloat light_position[] = {1.0, 0.5, 1.0, 0.0};
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	//player->draw();
+	glPushMatrix();
 	player->transform();
 	env->draw();
+	glPopMatrix();
+	player->draw(window);
 }
 

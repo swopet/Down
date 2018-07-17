@@ -12,6 +12,7 @@ private:
 public:
 	Game();
 	~Game();
+	void process_input();
 	void update();
 	void draw_scene();
 };

@@ -12,7 +12,7 @@ double aspect;
 void init(){
     srand(time(NULL));
     aspect = (double)window->getSize().y/(double)window->getSize().x;
-    glClearColor(0.0,0.0,0.0,1.0);
+    glClearColor(0.0,0.0,0.0,0.0);
     glEnable(GL_NORMALIZE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -43,6 +43,7 @@ int main()
 				aspect = (double)window->getSize().y/(double)window->getSize().x;
 			}
         }
+		game->process_input();
         game->update();
         game->draw_scene();
         window->display();
