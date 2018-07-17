@@ -27,7 +27,7 @@ int main()
 	settings.antialiasingLevel = 8;
 	settings.majorVersion = 3;
 	settings.minorVersion = 0;
-    window = new sf::RenderWindow(sf::VideoMode(800, 600), "One Windowy Boi", sf::Style::Default, settings);
+    window = new sf::RenderWindow(sf::VideoMode(1280, 720), "One Windowy Boi", sf::Style::Default, settings);
     init();
     while (window->isOpen())
     {
