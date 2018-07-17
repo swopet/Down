@@ -30,11 +30,11 @@ void Game::draw_scene(){
     glEnable(GL_LIGHTING);
 	double scale_fac = SQRT_2/16.0; //16 tiles diagonally across
     glScalef(scale_fac,scale_fac,scale_fac);
-    glRotatef(28.0,1.0,0.0,0.0);
+    glRotatef(30.0,1.0,0.0,0.0);
 	glRotatef(45.0,0.0,1.0,0.0);
 	GLfloat light_position[] = {1.0, 0.5, 1.0, 0.0};
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	player->draw();
+	//player->draw();
 	player->transform();
 	env->draw();
 }
