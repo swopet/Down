@@ -3,11 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 namespace Tile{
+	enum tile_type {
+		GB = 0,
+		RB = 1,
+		BW = 2
+	};
 	void load_textures();
 	class Tile
 	{
 	private:
-		int texture;
+		tile_type type;
 		sf::Vector2f pos;
 		GLfloat height;
 	public:

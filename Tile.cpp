@@ -1,14 +1,14 @@
 #include "Tile.hpp"
 namespace Tile{
-	sf::Texture textures[2];
+	sf::Texture textures[3];
 	void load_textures(){
-		textures[0].loadFromFile("../Resources/Sprites/Tiles/checker_bw.png");
-		textures[1].loadFromFile("../Resources/Sprites/Tiles/checker_rb.png");
-		textures[2].loadFromFile("../Resources/Sprites/Tiles/checker_gb.png");
+		textures[BW].loadFromFile("../Resources/Sprites/Tiles/checker_bw.png");
+		textures[RB].loadFromFile("../Resources/Sprites/Tiles/checker_rb.png");
+		textures[GB].loadFromFile("../Resources/Sprites/Tiles/checker_gb.png");
 	}
 	Tile::Tile()
 	{
-		texture = 2;
+		type = GB;
 		height = 0.0;
 		pos = sf::Vector2f(0.0,0.0);
 	}
@@ -29,7 +29,7 @@ namespace Tile{
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		glColor3f(1.0,1.0,1.0);
 		glEnable(GL_TEXTURE_2D);
-		sf::Texture::bind(&textures[texture]);
+		sf::Texture::bind(&textures[type]);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.0,1.0);
 		glVertex3f(0.0,0.0,0.0);
