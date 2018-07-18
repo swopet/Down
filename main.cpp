@@ -17,6 +17,7 @@ void init(){
     glEnable(GL_NORMALIZE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+	Tile::load_textures();
 	game = new Game();
 }
 

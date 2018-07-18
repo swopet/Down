@@ -5,7 +5,7 @@
 class Chunk
 {
 private:
-	Tile tiles[400]; //20x20
+	Tile::Tile tiles[400]; //20x20
 public:
 	Chunk();
 	~Chunk();
