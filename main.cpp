@@ -26,7 +26,7 @@ int main()
     sf::ContextSettings settings;
 	settings.depthBits = 24;
 	settings.stencilBits = 0;
-	settings.antialiasingLevel = 8;
+	settings.antialiasingLevel = 0;
 	settings.majorVersion = 3;
 	settings.minorVersion = 0;
     window = new sf::RenderWindow(sf::VideoMode(768, 432), "One Windowy Boi", sf::Style::Default, settings);

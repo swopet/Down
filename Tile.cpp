@@ -4,10 +4,11 @@ namespace Tile{
 	void load_textures(){
 		textures[0].loadFromFile("../Resources/Sprites/Tiles/checker_bw.png");
 		textures[1].loadFromFile("../Resources/Sprites/Tiles/checker_rb.png");
+		textures[2].loadFromFile("../Resources/Sprites/Tiles/checker_gb.png");
 	}
 	Tile::Tile()
 	{
-		texture = rand()%2;
+		texture = 2;
 		height = 0.0;
 		pos = sf::Vector2f(0.0,0.0);
 	}
@@ -30,13 +31,13 @@ namespace Tile{
 		glEnable(GL_TEXTURE_2D);
 		sf::Texture::bind(&textures[texture]);
 		glBegin(GL_QUADS);
-		glTexCoord2f(0.0,0.5);
+		glTexCoord2f(0.0,1.0);
 		glVertex3f(0.0,0.0,0.0);
-		glTexCoord2f(0.5,1.0);
+		glTexCoord2f(1.0,1.0);
 		glVertex3f(0.0,0.0,1.0);
-		glTexCoord2f(1.0,0.5);
+		glTexCoord2f(1.0,0.0);
 		glVertex3f(1.0,0.0,1.0);
-		glTexCoord2f(0.5,0.0);
+		glTexCoord2f(0.0,0.0);
 		glVertex3f(1.0,0.0,0.0);
 		glEnd();
 		sf::Texture::bind(NULL);
