@@ -13,6 +13,12 @@ Game::~Game()
 {
 }
 
+void Game::run_loop() {
+	process_input();
+	update();
+	draw_scene();
+}
+
 void Game::process_input(){
 	sf::Vector2i player_movement(0,0);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
@@ -51,10 +57,12 @@ void Game::draw_scene(){
 	glRotatef(45.0,0.0,1.0,0.0);
 	GLfloat light_position[] = {1.0, 0.5, 1.0, 0.0};
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	
 	glPushMatrix();
-	player->transform();
-	env->draw();
+		player->transform();
+		env->draw();
 	glPopMatrix();
+	
 	player->draw(window);
 }
 

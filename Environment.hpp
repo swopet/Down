@@ -2,6 +2,7 @@
 #define ENVIRONMENT_HPP
 
 #include <map>
+#include "Player.hpp"
 #include "Chunk.hpp"
 #include "Tile.hpp"
 

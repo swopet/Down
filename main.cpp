@@ -3,8 +3,6 @@
 #include <math.h>
 #include "Game.hpp"
 #include <Winsock2.h>
-#define SQRT_3 1.73205080757
-#define SQRT_2 1.41421356237
 
 sf::RenderWindow * window;
 Game * game;
@@ -49,9 +47,7 @@ int main()
 				aspect = (double)window->getSize().y/(double)window->getSize().x;
 			}
         }
-		game->process_input();
-        game->update();
-        game->draw_scene();
+		game->run_loop();
 		stop = clock();
 		double elapsed = double(stop-start)*1000.0/CLOCKS_PER_SEC;
             if (elapsed < 33) Sleep(33-elapsed);

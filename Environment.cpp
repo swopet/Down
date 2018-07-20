@@ -21,8 +21,8 @@ void Environment::set_chunk(std::pair<int, int> chunk_location, Chunk* chunk) {
 void Environment::draw(){
 	for (std::map<std::pair<int,int>,Chunk *>::iterator iter = chunks.begin(); iter != chunks.end(); iter++){
 		glPushMatrix();
-		glTranslatef(iter->first.first,0.0,iter->first.second);
-		iter->second->draw();
+			glTranslatef(iter->first.first,0.0,iter->first.second);
+			iter->second->draw();
 		glPopMatrix();
 	}
 }
