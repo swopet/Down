@@ -15,16 +15,16 @@ namespace Mesh{
 	{
 		switch(mesh_type){
 			case EMPTY:
-				num_vertices = 0;
-				num_triangles = 0;
+				numVertices = 0;
+				numTriangles = 0;
 				vertices = NULL;
 				indices = NULL;
 				break;
 			case CUBE_MESH:
-				num_vertices = 24;
-				num_triangles = 12;
-				vertices = (GLfloat *)malloc(10*num_vertices*sizeof(GLfloat));
-				indices = (GLuint *)malloc(3*num_triangles*sizeof(GLuint));
+				numVertices = 24;
+				numTriangles = 12;
+				vertices = (GLfloat *)malloc(10*numVertices*sizeof(GLfloat));
+				indices = (GLuint *)malloc(3*numTriangles*sizeof(GLuint));
 				for (int i = 0; i < 6; i++){
 					glMatrixMode(GL_MODELVIEW);
 					glPushMatrix();
@@ -68,10 +68,19 @@ namespace Mesh{
 	Mesh::~Mesh()
 	{
 	}
+	
+	int Mesh::get_numTriangles() {
+		return numTriangles;
+	}
+	
+	int Mesh::get_numVertices() {
+		return numVertices;
+	}
+	
 	void Mesh::draw(){
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		glInterleavedArrays(GL_C4F_N3F_V3F,0,vertices);
-		glDrawElements(GL_TRIANGLES,3*num_triangles,GL_UNSIGNED_INT,indices);
+		glDrawElements(GL_TRIANGLES,3*numTriangles,GL_UNSIGNED_INT,indices);
 	}
 }
 

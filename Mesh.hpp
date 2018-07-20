@@ -1,5 +1,6 @@
 #ifndef MESH_HPP
 #define MESH_HPP
+
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 
@@ -10,15 +11,19 @@ namespace Mesh{
 	};
 	class Mesh
 	{
-	private:
-		int num_vertices;
-		int num_triangles;
-		GLfloat * vertices;
-		GLuint * indices;
-	public:
-		Mesh(default_mesh);
-		~Mesh();
-		void draw();
+		private:
+			int numVertices;
+			int numTriangles;
+			GLfloat * vertices;
+			GLuint * indices;
+		public:
+			Mesh(default_mesh);
+			~Mesh();
+			
+			int get_numVertices();
+			int get_numTriangles();
+			
+			void draw();
 	};
 }
 
